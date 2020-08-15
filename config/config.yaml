@@ -1,0 +1,4 @@
+runtime:
+  mode: debug
+  port: 10086
+  logPath: ./logs/
