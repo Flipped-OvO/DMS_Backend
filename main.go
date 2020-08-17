@@ -16,6 +16,9 @@ func main() {
 }
 
 func startServer() {
+
+	//lixinger.FetchACompanyData()
+
 	_, err := time.LoadLocation("Local")
 	if err != nil {
 		log.Println(err)

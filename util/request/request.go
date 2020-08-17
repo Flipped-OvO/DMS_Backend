@@ -66,15 +66,16 @@ func Fail(ctx *gin.Context, err error) bool {
 	return true
 }
 
-func Success(ctx *gin.Context, data interface{}) {
+func Success(ctx *gin.Context, data interface{}, extra ...interface{}) {
 	if data == nil {
 		ctx.Status(http.StatusNoContent)
 		return
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"code": http.StatusOK,
-		"data": data,
+		"code":  http.StatusOK,
+		"data":  data,
+		"extra": extra,
 	})
 }
 

@@ -5,3 +5,39 @@
 [GIN-debug] GET    /assets/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
 [GIN-debug] HEAD   /assets/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
 [GIN-debug] GET    /                         --> backend/util/router.Initialization.func2 (4 handlers)
+[GIN-debug] GET    /api/company/             --> backend/pkg/fs/handle.SearchCompanyByNameOrCode (4 handlers)
+[GIN-debug] GET    /api/company/uninit       --> backend/pkg/fs/handle.GetUnInitCompany (4 handlers)
+[GIN-debug] GET    /api/company/collection   --> backend/pkg/fs/handle.GetCollectionCompany (4 handlers)
+[GIN-debug] POST   /api/company/collection   --> backend/pkg/fs/handle.NewCollectionCompany (4 handlers)
+[GIN-debug] DELETE /api/company/collection   --> backend/pkg/fs/handle.RemoveCollectionCompany (4 handlers)
+2020-08-17 20:28:30 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.411031ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:28:30 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.469563ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:28:32 - [127.0.0.1] "DELETE /api/company/collection HTTP/1.1 204 35.85µs "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:28:39 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 10.516489ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:28:39 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 7.212002ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:20 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 10.621693ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:20 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.47744ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:21 - [127.0.0.1] "DELETE /api/company/collection HTTP/1.1 204 6.035913ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:25 - [::1] "GET /ws HTTP/1.1 404 36.373µs "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:27 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.29082ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:27 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.565501ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:44 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 7.105935ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:44 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 11.109006ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:45 - [127.0.0.1] "DELETE /api/company/collection HTTP/1.1 204 5.789177ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:52 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.632586ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:29:52 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 8.295487ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:30:05 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 7.600297ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:30:05 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 10.577739ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:30:06 - [127.0.0.1] "DELETE /api/company/collection HTTP/1.1 204 5.884907ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:30:23 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.389894ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:30:23 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 8.099268ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:33:00 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 8.248865ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:33:00 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 10.393335ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:33:13 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 7.547696ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:33:13 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 10.976224ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:34:05 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.116564ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:34:05 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.150599ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:34:09 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.558753ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:34:09 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.954064ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:36:16 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.102695ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:36:16 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.354294ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "

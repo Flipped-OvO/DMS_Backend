@@ -1,6 +1,7 @@
 package router
 
 import (
+	FS "backend/pkg/fs"
 	"backend/util/setting"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -41,15 +42,42 @@ func Initialization() *gin.Engine {
 	router.GET("/", func(context *gin.Context) {
 		context.AbortWithStatus(http.StatusForbidden)
 	})
-	r := router.Group("/api/v1")
-	setupRouters(r)
+	api := router.Group("/api")
+	setupRouters(api)
 
 	return router
 }
 
 func setupRouters(r *gin.RouterGroup) {
-
+	FS.Initialization(r)
 }
+
+// TODO 建立连接池 在得知页面有更新后，通知其他链接更新内容
+//r.GET("/ws", func(ctx *gin.Context) {
+//	upgrader := websocket.Upgrader{CheckOrigin: func(r *http.Request) bool {
+//		return true
+//	}}
+//	ws, err := upgrader.Upgrade(ctx.Writer, ctx.Request, nil)
+//	if err != nil {
+//		return
+//	}
+//	defer ws.Close()
+//
+//	for {
+//		messageType, message, err := ws.ReadMessage()
+//		if err != nil {
+//			break
+//		}
+//		fmt.Println(string(message))
+//		if string(message) == "upgrade" {
+//			err = ws.WriteMessage(messageType, []byte("new data"))
+//			if err != nil {
+//				fmt.Println(err)
+//				break
+//			}
+//		}
+//	}
+//})
 
 func corsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
