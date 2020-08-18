@@ -41,3 +41,29 @@
 2020-08-17 20:34:09 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.954064ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
 2020-08-17 20:36:16 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.102695ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
 2020-08-17 20:36:16 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.354294ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:49:16 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.257152ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:49:16 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.040413ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:49:49 - [127.0.0.1] "GET /api/company/uninit?page=1&limit=10 HTTP/1.1 200 6.491984ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:49:49 - [127.0.0.1] "GET /api/company/collection?page=1&limit=10 HTTP/1.1 200 9.406964ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:00 - [127.0.0.1] "GET /api/company/uninit?page=2&limit=10 HTTP/1.1 200 7.266048ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:00 - [127.0.0.1] "GET /api/company/uninit?page=3&limit=10 HTTP/1.1 200 6.491637ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:05 - [127.0.0.1] "DELETE /api/company/collection HTTP/1.1 204 6.680749ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:08 - [127.0.0.1] "GET /api/company/?s=6 HTTP/1.1 200 23.298492ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:08 - [127.0.0.1] "GET /api/company/?s=60 HTTP/1.1 200 16.689485ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:09 - [127.0.0.1] "GET /api/company/?s=600 HTTP/1.1 200 11.301677ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=j
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji
+2020-08-17 20:50:15 - [127.0.0.1] "GET /api/company/?s=j HTTP/1.1 200 6.471415ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:15 - [127.0.0.1] "GET /api/company/?s=ji HTTP/1.1 200 7.171ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji%27c
+2020-08-17 20:50:15 - [127.0.0.1] "GET /api/company/?s=ji%27c HTTP/1.1 200 6.499925ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji%27ch
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji%27cha
+2020-08-17 20:50:15 - [127.0.0.1] "GET /api/company/?s=ji%27ch HTTP/1.1 200 6.777755ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:15 - [127.0.0.1] "GET /api/company/?s=ji%27cha HTTP/1.1 200 6.605673ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji%27chan
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=ji%27chang
+2020-08-17 20:50:16 - [127.0.0.1] "GET /api/company/?s=ji%27chan HTTP/1.1 200 6.699534ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+2020-08-17 20:50:16 - [127.0.0.1] "GET /api/company/?s=ji%27chang HTTP/1.1 200 6.262862ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
+[GIN-debug] redirecting request 301: /api/company/ --> /api/company/?s=%E6%9C%BA%E5%9C%BA
+2020-08-17 20:50:16 - [127.0.0.1] "GET /api/company/?s=%E6%9C%BA%E5%9C%BA HTTP/1.1 200 6.259906ms "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36" "
