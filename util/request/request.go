@@ -72,8 +72,16 @@ func Success(ctx *gin.Context, data interface{}, extra ...interface{}) {
 		return
 	}
 
+	code := http.StatusOK
+
+	if ctx.Request.Method == "DELETE" {
+		code = http.StatusNoContent
+	} else if ctx.Request.Method == "POST" {
+		code = http.StatusCreated
+	}
+
 	ctx.JSON(http.StatusOK, gin.H{
-		"code":  http.StatusOK,
+		"code":  code,
 		"data":  data,
 		"extra": extra,
 	})
