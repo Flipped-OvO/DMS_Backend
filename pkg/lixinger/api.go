@@ -3,11 +3,11 @@ package lixinger
 import (
 	FS "backend/pkg/fs/model"
 	FSService "backend/pkg/fs/service"
-	"backend/util/db"
+	"backend/pkg/lixinger/model"
+	"backend/pkg/lixinger/service"
 	"fmt"
 	"github.com/imroc/req"
 	"log"
-	"time"
 )
 
 const (
@@ -22,7 +22,7 @@ const (
 )
 
 type (
-	response struct {
+	companyResponse struct {
 		Code    int
 		Message string
 		Data    []FS.Company
@@ -394,13 +394,13 @@ func FetchACompanyData() {
 		log.Println(err)
 	}
 
-	var res response
+	var res companyResponse
 	err = r.ToJSON(&res)
 	if err != nil {
 		log.Println(err)
 	}
 	if res.Code == 0 {
-		saveCompanyDatas(res.Data)
+		service.SaveCompanyDatas(res.Data)
 	}
 }
 
@@ -409,57 +409,142 @@ func FetchACompanyData() {
 */
 func FetchIncomStatement() {
 	cps := FSService.GetAllCompany()
-	cp := cps[0]
-	if len(cp.IpoDate) < 10 {
-		return
-	}
-	startDate := cp.IpoDate[:5] + standardDate[0]
-	fmt.Println(startDate)
-	params := req.Param{
-		"token":       token,
-		"startDate":   startDate,
-		"stockCodes":  []string{cp.StockCode},
-		"metricsList": incomeStatement,
-	}
-	r, err := req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
-	if err != nil {
-		log.Println(err)
-	}
-	var res response
-	err = r.ToJSON(&res)
-	if err != nil {
-		log.Println()
-	}
-	fmt.Println(res)
-	//for _, cp := range cps {
-	//	if len(cp.IpoDate) < 10 {
-	//		break
-	//	}
-	//	startDate := cp.IpoDate[:5] + standardDate[0]
-	//	fmt.Println(startDate)
-	//	params := req.Param{
-	//		"token": token,
-	//		"startDate": startDate,
-	//	}
-	//}
-}
-
-// 储存公司信息
-func saveCompanyDatas(companys []FS.Company) {
-	sql := "INSERT INTO company (stock_code, market, ipo_date, area_code, name, fs_type, initialzation) VALUES "
-	for index, c := range companys {
-		t, _ := time.Parse(time.RFC3339, c.IpoDate)
-		if index == len(companys)-1 {
-			sql += fmt.Sprintf("('%s', '%s', '%s', '%s', '%s', '%s', %v);", c.StockCode, c.Market, t.Format("2006-01-02"), c.AreaCode, c.Name, c.FsType, false)
-		} else {
-			sql += fmt.Sprintf("('%s', '%s', '%s', '%s', '%s', '%s', %v), ", c.StockCode, c.Market, t.Format("2006-01-02"), c.AreaCode, c.Name, c.FsType, false)
+	for _, cp := range cps {
+		if len(cp.IpoDate) < 10 {
+			return
+		}
+		startDate := cp.IpoDate[:5] + standardDate[0]
+		params := req.Param{
+			"token":       token,
+			"startDate":   startDate,
+			"stockCodes":  []string{cp.StockCode},
+			"metricsList": incomeStatement,
+		}
+		r, err := req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
+		if err != nil {
+			log.Println(err)
+		}
+		var res model.ResponseForProfit
+		err = r.ToJSON(&res)
+		if err != nil {
+			log.Println()
+		}
+		for _, d := range res.Data {
+			fsProfit := FS.Profit{}
+			fsProfit.New(d)
+			service.SaveProfit(fsProfit)
 		}
 	}
+	fmt.Println("利润表储存完成")
+}
 
-	action := db.Action{
-		TableName: "company",
-		Sql:       sql,
+/*
+	获取资产负债表
+*/
+func FetchBalanceSheet() {
+	cps := FSService.GetAllCompany()
+	for _, cp := range cps {
+		if len(cp.IpoDate) < 10 {
+			return
+		}
+		startDate := cp.IpoDate[:5] + standardDate[0]
+		params := req.Param{
+			"token":       token,
+			"startDate":   startDate,
+			"stockCodes":  []string{cp.StockCode},
+			"metricsList": balanceSheet[:70],
+		}
+		r, err := req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
+		if err != nil {
+			log.Println(err)
+		}
+		var res model.ResponseForBalanceSheet
+		err = r.ToJSON(&res)
+		if err != nil {
+			log.Println()
+		}
+		params["metricsList"] = balanceSheet[70:]
+		r, err = req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
+		if err != nil {
+			log.Println(err)
+		}
+		err = r.ToJSON(&res)
+		if err != nil {
+			log.Println()
+		}
+		for _, d := range res.Data {
+			fsBs := FS.BalanceSheet{}
+			fsBs.New(d)
+			service.SaveBalanceSheet(fsBs)
+		}
 	}
+	fmt.Println("资产负债表储存完成")
+}
 
-	action.Exce()
+/*
+	获取现金流量表
+*/
+func FetchCashFlow() {
+	cps := FSService.GetAllCompany()
+	for _, cp := range cps {
+		if len(cp.IpoDate) < 10 {
+			return
+		}
+		startDate := cp.IpoDate[:5] + standardDate[0]
+		params := req.Param{
+			"token":       token,
+			"startDate":   startDate,
+			"stockCodes":  []string{cp.StockCode},
+			"metricsList": cashFlow,
+		}
+		r, err := req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
+		if err != nil {
+			log.Println(err)
+		}
+		var res model.ResponseForCashFlow
+		err = r.ToJSON(&res)
+		if err != nil {
+			log.Println()
+		}
+		for _, d := range res.Data {
+			fsCf := FS.CashFlow{}
+			fsCf.New(d)
+			service.SaveCashFlow(fsCf)
+		}
+	}
+	fmt.Println("现金流量表储存完成")
+}
+
+/*
+	获取财务指标
+*/
+func FetchFinancialIndex() {
+	cps := FSService.GetAllCompany()
+	for _, cp := range cps {
+		if len(cp.IpoDate) < 10 {
+			return
+		}
+		startDate := cp.IpoDate[:5] + standardDate[0]
+		params := req.Param{
+			"token":       token,
+			"startDate":   startDate,
+			"stockCodes":  []string{cp.StockCode},
+			"metricsList": cashFlow,
+		}
+		r, err := req.Post(url+"/a/stock/fs/non_financial", req.BodyJSON(&params))
+		if err != nil {
+			log.Println(err)
+		}
+		var res model.ResponseForFinancialIndex
+		err = r.ToJSON(&res)
+		if err != nil {
+			log.Println()
+		}
+		for _, d := range res.Data {
+			fsFi := FS.FinancialIndex{}
+			fsFi.New(d)
+			service.SaveFinancialIndex(fsFi)
+		}
+	}
+	fmt.Println("财务指标储存完成")
 }

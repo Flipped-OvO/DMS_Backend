@@ -1,7 +1,6 @@
 package main
 
 import (
-	"backend/pkg/lixinger"
 	"backend/util"
 	"backend/util/router"
 	"backend/util/setting"
@@ -17,15 +16,17 @@ func main() {
 }
 
 func startServer() {
-
-	//lixinger.FetchACompanyData()
-	lixinger.FetchIncomStatement()
-
 	_, err := time.LoadLocation("Local")
 	if err != nil {
 		log.Println(err)
 	}
 	util.LogInitialization()
+	//go func() {
+	//	lixinger.FetchBalanceSheet()
+	//	lixinger.FetchCashFlow()
+	//	lixinger.FetchFinancialIndex()
+	//}()
+
 	r := router.Initialization()
 
 	s := &http.Server{

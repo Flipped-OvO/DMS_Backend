@@ -10,6 +10,7 @@ import (
 const (
 	companyTB    = "company"
 	collectionTB = "companyCollection"
+	profitTB     = "profit"
 )
 
 // 根据公司或股票代码搜索公司
@@ -122,5 +123,23 @@ func getCompanyByCodes(codes []string, params common.Params) (companys []model.C
 
 	action.QueryBySQL(&companys)
 
+	return
+}
+
+/*
+	-------- 财报 --------
+*/
+
+// 获取公司利润表
+func GetCompanyProfit(sc string, params common.Params) (profit []model.Profit) {
+	action := db.Action{
+		TableName: profitTB,
+		Query:     "stock_code = ?",
+		Value:     []interface{}{sc},
+		Offset:    (params.Page - 1) * 5,
+		Limit:     5,
+		Order:     "standard_time desc",
+	}
+	action.QueryAndOrderPagination(&profit)
 	return
 }

@@ -48,10 +48,27 @@ func NewCollectionCompany(ctx *gin.Context) {
 	request.Success(ctx, nil)
 }
 
+// 移除公司收藏
 func RemoveCollectionCompany(ctx *gin.Context) {
 	code := ctx.DefaultPostForm("code", "")
 	if len(code) != 0 {
 		service.RemoveCollectionCompany(code)
 	}
 	request.Success(ctx, nil)
+}
+
+// 获取公司利润表
+func GetCompanyProfit(ctx *gin.Context) {
+	sc := ctx.DefaultQuery("sc", "")
+	if len(sc) == 0 {
+		request.Success(ctx, nil)
+	}
+
+	var cp common.Params
+	if request.ParseParamFail(ctx, &cp) {
+		return
+	}
+
+	profit := service.GetCompanyProfit(sc, cp)
+	request.Success(ctx, profit)
 }
