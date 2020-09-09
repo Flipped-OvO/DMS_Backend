@@ -5,12 +5,16 @@ import (
 	"backend/util/common"
 	"backend/util/db"
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 const (
 	companyTB    = "company"
 	collectionTB = "companyCollection"
 	profitTB     = "profit"
+	balanceTB = "balanceSheet"
+	limit = 15
 )
 
 // 根据公司或股票代码搜索公司
@@ -136,10 +140,50 @@ func GetCompanyProfit(sc string, params common.Params) (profit []model.Profit) {
 		TableName: profitTB,
 		Query:     "stock_code = ?",
 		Value:     []interface{}{sc},
-		Offset:    (params.Page - 1) * 5,
-		Limit:     5,
-		Order:     "standard_time desc",
+		Offset:    (params.Page - 1) * limit,
+		Limit:     limit,
+		Order:     "standard_time asc",
 	}
 	action.QueryAndOrderPagination(&profit)
+	return
+}
+
+// 获取公司资产负债表
+func GetCompanyBalanceSheet(sc string, params common.Params) (bs []model.BalanceSheet) {
+	action := db.Action{
+		TableName: balanceTB,
+		Query:     "stock_code = ?",
+		Value:     []interface{}{sc},
+		Limit:     5,
+		Offset:    (params.Page - 1) * 5,
+		Order: "standard_time desc",
+	}
+	action.QueryAndOrderPagination(&bs)
+	return
+}
+
+// 储存编辑内容
+func SaveEdit(data map[string]string, code string) {
+	for k, v := range data {
+		m, tbName, index, key := parseEditKey(k)
+		action := db.Action{
+			TableName: tbName,
+			Query:     fmt.Sprintf("stock_code = ? AND index = ?"),
+			Value:     []interface{}{code, index},
+		}
+		action.Update(&m, key, v)
+	}
+}
+
+func parseEditKey(str string) (m interface{}, tableName string, index int64, key string) {
+	strArr := strings.Split(str, ".")
+	tableName = strArr[0]
+	switch tableName {
+		case "profit":
+		m = model.Profit{}
+	}
+	index, _ = strconv.ParseInt(strArr[1], 10, 64)
+	key = strArr[2]
+
 	return
 }

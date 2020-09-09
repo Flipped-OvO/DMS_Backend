@@ -5,6 +5,7 @@ import (
 	"backend/pkg/fs/service"
 	"backend/util/common"
 	"backend/util/request"
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 )
 
@@ -57,6 +58,17 @@ func RemoveCollectionCompany(ctx *gin.Context) {
 	request.Success(ctx, nil)
 }
 
+/*
+	-------- 财报 --------
+
+	Rev  Revenue 收入
+	COGS  Cost of Goods Sales 销售成本
+	GP  Gross Profit 毛利
+	SM  Selling and Marketing 市场推广费用
+	GA  General Administration 管理费用
+	RD  Research & Development 研发费用
+*/
+
 // 获取公司利润表
 func GetCompanyProfit(ctx *gin.Context) {
 	sc := ctx.DefaultQuery("sc", "")
@@ -70,5 +82,41 @@ func GetCompanyProfit(ctx *gin.Context) {
 	}
 
 	profit := service.GetCompanyProfit(sc, cp)
-	request.Success(ctx, profit)
+
+	response := model.GetProfitTableData(profit)
+
+	request.Success(ctx, response)
+}
+
+// 获取公司资产负债表
+func GetCompanyBalanceSheet(ctx *gin.Context) {
+	sc := ctx.DefaultQuery("sc", "")
+	if len(sc) == 0 {
+		request.Success(ctx, nil)
+	}
+	var cp common.Params
+	if request.ParseParamFail(ctx, &cp) {
+		return
+	}
+
+	bs := service.GetCompanyBalanceSheet(sc, cp)
+
+	request.Success(ctx, bs)
+}
+
+func SaveEdit(ctx *gin.Context) {
+	code := ctx.DefaultPostForm("code", "")
+	if len(code) == 0 {
+		request.Success(ctx, nil)
+	}
+	data := ctx.DefaultPostForm("data", "")
+	var dataMap map[string]string
+	err := json.Unmarshal([]byte(data), &dataMap)
+	if request.Fail(ctx, err) {
+		return
+	}
+
+	service.SaveEdit(dataMap, code)
+
+	request.Success(ctx, nil)
 }

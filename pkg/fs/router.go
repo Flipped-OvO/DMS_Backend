@@ -16,4 +16,6 @@ func Initialization(r *gin.RouterGroup) {
 	company.DELETE("/collection", handle.RemoveCollectionCompany)
 
 	company.GET("/profit", handle.GetCompanyProfit)
+	company.GET("/balancesheet", handle.GetCompanyBalanceSheet)
+	company.POST("/edit", handle.SaveEdit)
 }

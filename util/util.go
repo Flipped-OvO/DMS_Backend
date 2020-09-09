@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"strconv"
 )
 
 func LogInitialization() {
@@ -35,4 +36,14 @@ func PathExists(path string) (bool, error) {
 		return false, nil
 	}
 	return false, err
+}
+
+
+func FloatToString(num float64) string {
+	return strconv.FormatFloat(num, 'f', 0, 64)
+}
+
+func ParseFloat(num string) float64 {
+	result, _ := strconv.ParseFloat(num, 10)
+	return result
 }

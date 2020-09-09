@@ -68,23 +68,23 @@ type (
 	}
 
 	ps struct {
-		Ps map[string]c
+		Ps map[string]T
 	}
 
 	bs struct {
-		Bs map[string]c
+		Bs map[string]T
 	}
 
 	cfs struct {
-		Cfs map[string]c
+		Cfs map[string]T
 	}
 
 	m struct {
-		M map[string]c
+		M map[string]T
 	}
 
-	c struct {
-		C interface{}
+	T struct {
+		T interface{}
 	}
 )
 
@@ -99,7 +99,7 @@ func (p ProfitResponse) GetMapData() map[string]interface{} {
 	data["reportDate"] = rt.Format("2006-01-02")
 	data["reportType"] = p.ReportType
 	for k, v := range p.Q.Ps {
-		data[k] = v.C
+		data[k] = v.T
 	}
 
 	return data
@@ -116,7 +116,7 @@ func (b BalanceSheetResponse) GetMapData() map[string]interface{} {
 	data["reportDate"] = rt.Format("2006-01-02")
 	data["reportType"] = b.ReportType
 	for k, v := range b.Q.Bs {
-		data[k] = v.C
+		data[k] = v.T
 	}
 
 	return data
@@ -133,7 +133,7 @@ func (r CashFlowResponse) GetMapData() map[string]interface{} {
 	data["reportDate"] = rt.Format("2006-01-02")
 	data["reportType"] = r.ReportType
 	for k, v := range r.Q.Cfs {
-		data[k] = v.C
+		data[k] = v.T
 	}
 
 	return data
@@ -150,7 +150,7 @@ func (r FinancialIndexResponse) GetMapData() map[string]interface{} {
 	data["reportDate"] = rt.Format("2006-01-02")
 	data["reportType"] = r.ReportType
 	for k, v := range r.Q.M {
-		data[k] = v.C
+		data[k] = v.T
 	}
 
 	return data

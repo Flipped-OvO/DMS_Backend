@@ -82,6 +82,13 @@ func (a Action) QueryAndOrderPagination(out interface{}) {
 	conn.Where(a.Query, a.Value...).Limit(a.Limit).Offset(a.Offset).Order(a.Order).Find(out)
 }
 
+// 更新
+func (a Action) Update(model interface{}, key string, value string)  {
+	conn := newConnection(a.TableName)
+	defer conn.Close()
+	conn.Model(model).Where(a.Query, a.Value...).Update(key, value)
+}
+
 // 新建数据库连接
 func newConnection(tbName string) *gorm.DB {
 	db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=flipped dbname=DMS sslmode=disable")

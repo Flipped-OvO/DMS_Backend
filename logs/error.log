@@ -1,1 +1,2 @@
 2020/08/20 05:04:28 main.go:28: aaa
+2020/08/25 08:12:08 api.go:218: Post "https://open.lixinger.com/api/a/stock/fs/non_financial": read tcp 192.168.2.6:54473->47.95.158.102:443: read: connection reset by peer

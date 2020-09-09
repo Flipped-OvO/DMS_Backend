@@ -12,7 +12,6 @@ const (
 	profitTB         = "profit"
 	balanceTB        = "balanceSheet"
 	cashFlowTB       = "cashFlow"
-	financialIndexTB = "financialIndex"
 )
 
 // 储存公司信息
@@ -63,13 +62,4 @@ func SaveCashFlow(cf FS.CashFlow) {
 		TableName: cashFlowTB,
 	}
 	action.InsertOne(&cf)
-}
-
-/*
-	储存财务指标
-*/func SaveFinancialIndex(fi FS.FinancialIndex) {
-	action := db.Action{
-		TableName: financialIndexTB,
-	}
-	action.InsertOne(&fi)
 }

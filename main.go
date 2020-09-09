@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/pkg/lixinger"
 	"backend/util"
 	"backend/util/router"
 	"backend/util/setting"
@@ -21,11 +22,11 @@ func startServer() {
 		log.Println(err)
 	}
 	util.LogInitialization()
-	//go func() {
-	//	lixinger.FetchBalanceSheet()
-	//	lixinger.FetchCashFlow()
-	//	lixinger.FetchFinancialIndex()
-	//}()
+	go func() {
+		lixinger.FetchIncomStatement()
+		//lixinger.FetchBalanceSheet()
+		//lixinger.FetchCashFlow()
+	}()
 
 	r := router.Initialization()
 
